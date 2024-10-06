@@ -1,0 +1,20 @@
+version: '3'
+services:
+  reviews:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgres://user:password@postgres:5432/desserts
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: desserts
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
